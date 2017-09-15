@@ -1,5 +1,7 @@
 package br.com.spring.mvc.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -12,11 +14,14 @@ import br.com.spring.mvc.models.Produto;
 @Transactional
 public class ProdutoDAO {
 
-    @PersistenceContext
-    private EntityManager manager;
+	@PersistenceContext
+	private EntityManager manager;
 
-    public void gravar(Produto produto){
-        manager.persist(produto);
-    }
+	public void gravar(Produto produto) {
+		manager.persist(produto);
+	}
 
+	public List<Produto> listar(){
+	    return manager.createQuery("select p from Produto p", Produto.class).getResultList();
+	}
 }

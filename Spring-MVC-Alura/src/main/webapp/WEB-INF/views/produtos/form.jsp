@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form action="/Spring-MVC-Alura/produtos" method="post">
+	<form action="/Spring-MVC-Alura/produtos" method="POST">
 		<div>
 			<label>Título</label> 
 			<input type="text" name="titulo" />
