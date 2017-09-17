@@ -20,7 +20,7 @@ import br.com.spring.mvc.models.TipoPreco;
 import br.com.spring.mvc.validation.ProdutoValidation;
 
 @Controller
-@RequestMapping("produtos")
+@RequestMapping("/produtos")
 public class ProdutosController {
 
 	@Autowired
