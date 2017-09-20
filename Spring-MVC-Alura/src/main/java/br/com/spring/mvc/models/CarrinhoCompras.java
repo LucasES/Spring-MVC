@@ -3,9 +3,12 @@ package br.com.spring.mvc.models;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 @Component
+@Scope(value = WebApplicationContext.SCOPE_SESSION)
 public class CarrinhoCompras {
 
 	private Map<CarrinhoItem, Integer> itens = new LinkedHashMap<CarrinhoItem, Integer>();
@@ -23,6 +26,7 @@ public class CarrinhoCompras {
 	}
 	
 	public int getQuantidade() {
-		return itens.values().stream().reduce(0, (proximo, acumulador) -> proximo + acumulador);
+		return itens.values().stream()
+				.reduce(0, (proximo, acumulador) -> proximo + acumulador);
 	}
 }
