@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -10,26 +9,27 @@
 <title>Livros de Java, Android, iPhone, Ruby, PHP e muito mais -
 	Casa do Código</title>
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<style type="text/css">
+	.my-container{
+		padding-top: 35px;
+	}
+</style>
 </head>
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">Casa do Código</a>
+		<a class="navbar-brand" href="${s:mvcUrl('HC#index').build() }">Casa do Código</a>
 
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
-						<span class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Features</a>
+				<li class="nav-item"><a class="nav-link" href="${s:mvcUrl('PC#listar').build() }">Lista de Produtos</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
-				</li>
+				<li class="nav-item"><a class="nav-link" href="${s:mvcUrl('PC#form').build() }">Cadastro de Produtos</a></li>
 			</ul>
 		</div>
 
 	</nav>
-	<div class="container">
+	<div class="container my-container">
 		<h1>Lista de Produtos</h1>
 
 		<div>${sucesso}</div>
