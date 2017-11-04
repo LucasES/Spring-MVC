@@ -3,17 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 
-<%@ include file="/WEB-INF/views/cabecalho.jsp" %>
-			
+<tags:pageTemplate titulo="Livros de Java, Android, IOs, Mobile e muito mais...">
 	<section id="index-section" class="container middle">
-
 		<h1 class="cdc-call">Últimos dias com os preços promocionais. Aproveite!</h1>
 		<ul class="clearfix book-collection">
-
-			<!-- Aqui você fará a repetição -->
 			<c:forEach items="${produtos}" var="produto">
-
 			    <li>
 				    <a href="${s:mvcUrl('PC#detalhe').arg(0, produto.id).build() }" class="block clearfix">
 			            <h2 class="product-title">${produto.titulo}</h2>
@@ -27,12 +23,9 @@
 			    </li>
 			
 			</c:forEach>
-			<!-- Fechando aqui -->
-			
 		</ul>
-
+	
 		<h2 class="cdc-call">Diferenciais da Casa do Código</h2>
-
 		<ul id="cdc-diferenciais" class="clearfix">
 			<li class="col-left">
 				<h3>E-books sem DRM. Leia onde quiser</h3>
@@ -66,9 +59,5 @@
 				</p>
 			</li>
 		</ul>
-
-
-
 	</section>
-
-<%@ include file="/WEB-INF/views/rodape.jsp" %>
+</tags:pageTemplate>

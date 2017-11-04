@@ -3,9 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 
-<%@ include file="/WEB-INF/views/cabecalho.jsp" %>
-
+<tags:pageTemplate titulo="Livros de Java, Android, IOs, Mobile e muito mais...">
 	<article id="${produto.id }">
 		  <header id="product-highlight" class="clearfix">
 		    <div id="product-overview" class="container">
@@ -25,49 +25,41 @@
 		    </p>
 		    </div>
 		  </header>
-	
-	  
 	  <section class="buy-options clearfix">  
-	 
-	 <form action='<c:url value="/carrinho/add" />' method="post" class="container">
-	    <ul id="variants" class="clearfix">
-	    	  <input type="hidden" value="${produto.id}" name="produtoId" />
-	    	  <c:forEach items="${produto.precos}" var="preco">
-		    	  <li class="buy-option">
-		            <input type="radio" name="tipoPreco" class="variant-radio" id="tipo" value="${preco.tipo}"  checked="checked"  />
-		            <label  class="variant-label" for="product-variant-9720393823">
-		              ${preco.tipo }
-		            </label>
-		            <small class="compare-at-price">R$ 39,90</small>
-		            <p class="variant-price">${preco.valor }</p>
-		          </li>
-	          </c:forEach>           
-	    </ul>
-	    <button type="submit" class="submit-image icon-basket-alt" alt="Compre Agora" title="Compre Agora '${produto.titulo}'!"></button>
-	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token }" />
-	  </form>
-	  
+		 <form action='<c:url value="/carrinho/add" />' method="post" class="container">
+		    <ul id="variants" class="clearfix">
+		    	  <input type="hidden" value="${produto.id}" name="produtoId" />
+		    	  <c:forEach items="${produto.precos}" var="preco">
+			    	  <li class="buy-option">
+			            <input type="radio" name="tipoPreco" class="variant-radio" id="tipo" value="${preco.tipo}"  checked="checked"  />
+			            <label  class="variant-label" for="product-variant-9720393823">
+			              ${preco.tipo }
+			            </label>
+			            <small class="compare-at-price">R$ 39,90</small>
+			            <p class="variant-price">${preco.valor }</p>
+			          </li>
+		          </c:forEach>           
+		    </ul>
+		    <button type="submit" class="submit-image icon-basket-alt" alt="Compre Agora" title="Compre Agora '${produto.titulo}'!"></button>
+		    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token }" />
+		  </form>
 	</section>
 	  
-	<div class="container">
-	  <section class="summary">
-	    <ul>
-	      	<li><h3>E muito mais... <a href='/pages/sumario-java8'>veja o sumário</a>.</h3></li>
-	    </ul>
-	  </section>
-	  
-	  <section class="data product-detail">
-	    <h2 class="section-title">Dados do livro:</h2>
-	    <p>Número de páginas: <span>${produto.paginas }</span></p>
-	    <p></p>
-	    <p>Data de publicação: 
-	    	<fmt:formatDate pattern="dd/MM/yyyy" value="${produto.dataLancamento.time}"/>
-
-	    </p>
-	    <p>Encontrou um erro? <a href='/submissao-errata' target='_blank'>Submeta uma errata</a></p>
-	  </section>
-	</div>
-	
+		<div class="container">
+		  <section class="summary">
+		    <ul>
+		      	<li><h3>E muito mais... <a href='/pages/sumario-java8'>veja o sumário</a>.</h3></li>
+		    </ul>
+		  </section>
+		  <section class="data product-detail">
+		    <h2 class="section-title">Dados do livro:</h2>
+		    <p>Número de páginas: <span>${produto.paginas }</span></p>
+		    <p></p>
+		    <p>Data de publicação: 
+		    	<fmt:formatDate pattern="dd/MM/yyyy" value="${produto.dataLancamento.time}"/>
+		    </p>
+		    <p>Encontrou um erro? <a href='/submissao-errata' target='_blank'>Submeta uma errata</a></p>
+		  </section>
+		</div>
 	</article>	
-
-	<%@ include file="/WEB-INF/views/rodape.jsp" %>
+</tags:pageTemplate>
