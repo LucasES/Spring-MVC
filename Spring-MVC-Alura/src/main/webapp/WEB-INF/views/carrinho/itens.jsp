@@ -43,9 +43,9 @@
 				          </td>
 				          <td class="numeric-cell">R$ ${carrinhoCompras.getTotal(item) }</td>
 				          <td class="remove-item">
-				          	<form action="${s:mvcUrl('CCC#remover').arg(0, item.produto.id).arg(1,item.tipoPreco).build() }" method="post">
-				          		 <input type="image" src="${contextPath }resources/imagens/excluir.png" alt="Excluir" title="Excluir" />
-				          	</form>
+				          	<form:form action="${pageContext.servletContext.contextPath}/carrinho/remover/${item.produto.id}/${item.tipoPreco} " method="post">
+				          		 <input type="image" src="${pageContext.servletContext.contextPath}/resources/imagens/excluir.png" alt="Excluir" title="Excluir" />
+				          	</form:form>
 				          </td>
 				      </tr>
 			      </c:forEach>
