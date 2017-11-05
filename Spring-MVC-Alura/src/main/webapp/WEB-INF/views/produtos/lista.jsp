@@ -20,15 +20,15 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="${s:mvcUrl('HC#index').build() }">Casa do Código</a>
+		<a class="navbar-brand" href="${pageContext.servletContext.contextPath}">Casa do Código</a>
 
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="${s:mvcUrl('PC#listar').build() }">Lista de Produtos</a>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath}/produtos">Lista de Produtos</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="${s:mvcUrl('PC#form').build() }">Cadastro de Produtos</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath}/produtos/form">Cadastro de Produtos</a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav ml-auto">
 			  <li>
 			    <a href="#">
 			        <security:authentication property="principal" var="usuario"/>

@@ -19,10 +19,14 @@ import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -48,22 +52,23 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
 		return resolver;
 	}
-
+	
 	@Bean
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename("/WEB-INF/messages");
 		messageSource.setDefaultEncoding("UTF-8");
 		messageSource.setCacheSeconds(1);
+
 		return messageSource;
 	}
 
 	@Bean
 	public FormattingConversionService mvcConversionService() {
 		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
-		DateFormatterRegistrar formatterRegistrar = new DateFormatterRegistrar();
-		formatterRegistrar.setFormatter(new DateFormatter("dd/MM/yyyy"));
-		formatterRegistrar.registerFormatters(conversionService);
+		DateFormatterRegistrar registrar = new DateFormatterRegistrar();
+		registrar.setFormatter(new DateFormatter("dd/MM/yyyy"));
+		registrar.registerFormatters(conversionService);
 
 		return conversionService;
 	}
@@ -72,20 +77,6 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	public MultipartResolver multipartResolver() {
 		return new StandardServletMultipartResolver();
 	}
-
-//	@Override
-//	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-//	}
-	
-	/**
-	 * Configurando resources de outra maneira.
-	 */
-	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
-	}
-	
 
 	@Bean
 	public RestTemplate restTemplate() {
@@ -96,23 +87,38 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	public CacheManager cacheManager() {
 		CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder().maximumSize(100).expireAfterAccess(5,
 				TimeUnit.MINUTES);
-
 		GuavaCacheManager manager = new GuavaCacheManager();
 		manager.setCacheBuilder(builder);
 
 		return manager;
 	}
-	
+
 	@Bean
 	public ViewResolver contentNegotiationViewResolver(ContentNegotiationManager manager) {
 		List<ViewResolver> viewResolvers = new ArrayList<>();
 		viewResolvers.add(internalResourceViewResolver());
 		viewResolvers.add(new JsonViewResolver());
-		
+
 		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
 		resolver.setViewResolvers(viewResolvers);
 		resolver.setContentNegotiationManager(manager);
-		
+
 		return resolver;
 	}
+
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		configurer.enable();
+	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new LocaleChangeInterceptor());
+	}
+
+	@Bean
+	public LocaleResolver localeResolver() {
+		return new CookieLocaleResolver();
+	}
+
 }

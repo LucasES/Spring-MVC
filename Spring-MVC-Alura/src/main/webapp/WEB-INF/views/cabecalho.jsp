@@ -1,14 +1,15 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
- <header id="layout-header">
-	<div class="clearfix container">
-		<a href="${s:mvcUrl('PC#listar').build() }" id="logo">
+  <header id="layout-header">
+    <div class="clearfix container">
+        <a href="${pageContext.servletContext.contextPath}" id="logo">
 		</a>
 		<div id="header-content">
 			<nav id="main-nav">
 				
 				<ul class="clearfix">
-					<li><a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">
+					<li><a href="${pageContext.servletContext.contextPath}/carrinho" rel="nofollow">
 					Seu Carrinho (${carrinhoCompras.quantidade})  </a></li>
 
 					<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
