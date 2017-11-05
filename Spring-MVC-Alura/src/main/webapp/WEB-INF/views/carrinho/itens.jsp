@@ -7,7 +7,26 @@
 
 <tags:pageTemplate titulo="Seu carrinho de compras">
 
-	<section class="container middle">
+<jsp:attribute name="extraScripts">
+	<script>
+        $(function() {
+          $('#checkout').click(function () {
+            _gaq.push(['_trackPageview', '/checkout/finalizaCompra']);
+          });
+          $('.book-suggest').click(function () {
+            var book = $(this).data('book');
+            _gaq.push(['_trackEvent', 'Recomendação', 'Livro', book]); 
+          });
+        });
+    </script>
+    
+	<noscript><img height="1" width="1" alt="" style="display:none"
+	src="https://www.facebook.com/offsite_event.php?id=6009930053200&amp;value=0&amp;currency=USD"
+	/></noscript>
+</jsp:attribute>
+
+	<jsp:body>
+		<section class="container middle">
 		  <h2 id="cart-title">Seu carrinho de compras</h2>
 		  
 		  
@@ -74,5 +93,7 @@
 		  
 		 <h2><a href="${pageContext.servletContext.contextPath}">Veja todos os livros que publicamos!</a></h2>
 		</section> 
+		
+	</jsp:body>
 </tags:pageTemplate>
 		
