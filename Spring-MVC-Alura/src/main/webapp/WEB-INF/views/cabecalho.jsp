@@ -9,12 +9,32 @@
 			<nav id="main-nav">
 				
 				<ul class="clearfix">
-					<li><a href="${pageContext.servletContext.contextPath}/carrinho" rel="nofollow">
-					Seu Carrinho (${carrinhoCompras.quantidade})  </a></li>
+					<li>
+						<a href="${pageContext.servletContext.contextPath}/carrinho" rel="nofollow">
+<%-- 							<fmt:message key="menu.carrinho"> --%>
+<%-- 								<fmt:param value="${carrinhoCompras.quantidade}"/>  --%>
+<%-- 							</fmt:message> 
+					Outra alternativa 
+--%>
 
-					<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
-
-					<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
+								<s:message code="menu.carrinho" arguments="${carrinhoCompras.quantidade}" />
+						</a> 
+					</li>
+					<li>
+						<a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">
+							<fmt:message key="menu.sobre" />
+						</a>
+					</li>
+					<li>
+						<a href="?locale=pt" rel="nofollow">
+							<fmt:message key="menu.pt" />
+						</a>
+					</li>
+					<li>
+						<a href="?locale=en_US" rel="nofollow">
+							<fmt:message key="menu.en" />
+						</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -22,19 +42,45 @@
 </header>
 <nav class="categories-nav">
 	<ul class="container">
-		<li class="category"><a href="http://www.casadocodigo.com.br">Home</a></li>
-		<li class="category"><a href="/collections/livros-de-agile">
-				Agile </a></li>
-		<li class="category"><a href="/collections/livros-de-front-end">
-				Front End </a></li>
-		<li class="category"><a href="/collections/livros-de-games">
-				Games </a></li>
-		<li class="category"><a href="/collections/livros-de-java">
-				Java </a></li>
-		<li class="category"><a href="/collections/livros-de-mobile">
-				Mobile </a></li>
-		<li class="category"><a
-			href="/collections/livros-desenvolvimento-web"> Web </a></li>
-		<li class="category"><a href="/collections/outros"> Outros </a></li>
+	    <li class="category">
+	        <a href="${pageContext.servletContext.contextPath}">
+	        	<fmt:message key="navegacao.categoria.home" />
+	        </a>
+	    </li>
+	    <li class="category">
+	        <a href="/collections/livros-de-agile">
+				<fmt:message key="navegacao.categoria.agile" />
+		     </a>
+	    </li>
+	    <li class="category">
+	    	<a href="/collections/livros-de-front-end">
+		      <fmt:message key="navegacao.categoria.front_end" /> 
+		    </a>
+	    </li>
+	    <li class="category">
+	    	<a href="/collections/livros-de-games">
+		      <fmt:message key="navegacao.categoria.games" /> 
+		    </a>
+	    </li>
+	    <li class="category">
+	    	<a href="/collections/livros-de-java">
+		      <fmt:message key="navegacao.categoria.java" />
+		    </a>
+	    </li>
+	    <li class="category">
+	    	<a href="/collections/livros-de-mobile">
+		      <fmt:message key="navegacao.categoria.mobile" /> 
+		    </a>
+	    </li>
+	    <li class="category">
+	    	<a href="/collections/livros-desenvolvimento-web">
+	    	 <fmt:message key="navegacao.categoria.web" />
+	    	</a>
+	    </li>
+	    <li class="category">
+	    	<a href="/collections/outros">
+	    	 <fmt:message key="navegacao.categoria.outros" />
+	    	</a>
+	    </li>
 	</ul>
-	</nav>
+</nav>
