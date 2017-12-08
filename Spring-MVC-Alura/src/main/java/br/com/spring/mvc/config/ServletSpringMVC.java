@@ -4,6 +4,7 @@ import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration.Dynamic;
 
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -11,11 +12,14 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { SecurityConfiguration.class, AppWebConfiguration.class, JPAConfiguration.class };
+		return new Class[] { SecurityConfiguration.class,
+				AppWebConfiguration.class,
+				JPAConfiguration.class };
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
+		SimpleMailMessage email = new SimpleMailMessage();
 		return new Class[] {};
 	}
 
@@ -37,4 +41,11 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 		registration.setMultipartConfig(new MultipartConfigElement(""));
 	}
 
+//	@Override
+//	public void onStartup(ServletContext servletContext) throws ServletException {
+//		super.onStartup(servletContext);
+//		servletContext.addListener(RequestContextListener.class);
+//		servletContext.setInitParameter("spring.profiles.active", "dev");
+//	}
+	
 }
